@@ -1,0 +1,46 @@
+1 pandas.loc
+使用 基于标签(列头)的下标的 查找
+使用 boolean / 有条件的 查找
+    # 选择 first_name 为Antonio,并且从 'city' 到 'email'的所有列
+    data.loc[data['first_name'] == 'Antonio', 'city':'email']
+ 
+    # 选择那些 email的值中是以 "hotmail.com" 结尾的行，同时选择所有列
+    data.loc[data['email'].str.endswith("hotmail.com")]   
+ 
+    # 选择那些 "last_name" 等于某些值的行
+    data.loc[data['first_name'].isin(['France', 'Tyisha', 'Eric'])]   
+       
+    # 选择 first_name = 'Antonio' 并且 email 是以 "gmail.com"结尾的行
+    data.loc[data['email'].str.endswith("gmail.com") & (data['first_name'] == 'Antonio')] 
+ 
+    # select rows with id column between 100 and 200, and just return 'postal' and 'web' columns
+    # 选择那些 id 从100到200的行，并且只返回 'postal' 和 'web' 这两列
+    data.loc[(data['id'] > 100) & (data['id'] <= 200), ['postal', 'web']] 
+ 
+    # lambda函数产生的 True/False 同样可以使用到 loc 中
+    # 选择那些公司名为4个单词的行
+    data.loc[data['company_name'].apply(lambda x: len(x.split(' ')) == 4)] 
+ 
+    # 为了代码更加清晰， 选择也可以在 .loc 之外进行
+    # 在 .loc 之外单独生成一个变量
+    idx = data['company_name'].apply(lambda x: len(x.split(' ')) == 4)
+    # 只选择 idx 值为True的那些行，并且只选择'email', 'first_name', 'company'这3列
+    data.loc[idx, ['email', 'first_name', 'company']]
+    
+2 pandas.iloc
+基于整数的下标来进行数据定位/选择
+    # 使用DataFrame 和 iloc 进行单行/列的选择
+    # 行选择：
+    data.iloc[0] # 数据中的第一行
+    data.iloc[1] # 数据中的第二行
+    data.iloc[-1] # 数据中的最后一行    
+    # 列选择：
+    data.iloc[:, 0] # 数据中的第一列
+    data.iloc[:, 1] # 数据中的第二列
+    data.iloc[:, -1] # 数据中的最后一列 
+    
+    # 使用 iloc 进行行列混合选择
+    data.iloc[0:5] # 数据中的第 1-5 行
+    data.iloc[:, 0:2] # 选择数据中的前2列和所有行
+    data.iloc[[0, 3, 6, 24], [0, 5, 6]] # 选择第 1,4,7,25行 和 第 1,6,7 列
+    data.iloc[0:5, 5:8] # 选择第1-6行 和 6-9列
