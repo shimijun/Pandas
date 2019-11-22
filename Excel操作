@@ -1,0 +1,24 @@
+1 读取Excel,csv
+pandas.read_excel(常用参数sheet_name,header,usecols,skiprows)
+pandas.read_csv
+
+2 输出Excel
+pandas.to_excel(常用参数sheet_name,index)
+
+3 Excel追加内容
+先读入已有内容，再写
+from openpyxl import load_workbook
+book=load_workbook('E:\\'+monthNum+'月统计数据.xlsx')
+writer=pd.ExcelWriter('E:\\'+monthNum+'月统计数据.xlsx',engine='openpyxl')
+writer.book=book
+writer.sheets=dict((ws.title,ws) for ws in book.worksheets)
+hoursumt.to_excel(writer,sheet_name='按时段分布')
+timetop1.to_excel(writer,sheet_name='耗时Top10',index=False,float_format="%.2f")
+writer.save()
+
+4 输出多个sheet
+with pd.ExcelWriter('E:\\'+monthNum+'月统计数据.xlsx') as  writer:
+    framework.to_excel(writer,sheet_name='框架')
+    teamtotal.to_excel(writer,sheet_name='团队')
+    daysumt.to_excel(writer,sheet_name='按天分布')
+    top10.to_excel(writer,sheet_name='产品Top10')
