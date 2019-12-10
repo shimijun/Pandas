@@ -1,0 +1,27 @@
+drop_duplicates(常用参数subset,keep)
+subset：列名子集，针对这些列去重
+keep：重复部分保留第一个、最后一个或者不保留
+
+drop()
+columns：列名子集，去除这些列
+
+dropna()
+subset：列名子集，针对这些列
+
+append()
+ignore_index
+
+merge()
+how：合并方式，left/right/outer/inner，类似左连接、右连接、外连接、内连接
+on：列名子集，根据这些列进行合并
+
+取交集：
+df1.merge(df2,on=['name', 'age', 'sex'])
+
+取并集：
+df1.merge(df1,df2,on=['name', 'age', 'sex'], how='outer')
+
+取差集(从df1中过滤df1在df2中存在的行)：
+df1 = df1.append(df2)
+df1 = df1.append(df2)
+df1 = df1.drop_duplicates(subset=['name', 'age', 'sex'],keep=False)

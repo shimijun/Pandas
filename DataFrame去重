@@ -1,9 +1,0 @@
-drop_duplicates(常用参数subset,keep)
-subset：列名子集，针对这些列去重
-keep：重复部分保留第一个、最后一个或者不保留
-
-drop()
-columns：列名子集，去除这些列
-
-dropna()
-subset：列名子集，针对这些列
