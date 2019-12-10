@@ -1,12 +1,7 @@
-drop_duplicates(常用参数subset,keep)
+drop_duplicates(
 subset：列名子集，针对这些列去重
 keep：重复部分保留第一个、最后一个或者不保留
-
-drop()
-columns：列名子集，去除这些列
-
-dropna()
-subset：列名子集，针对这些列
+inplace：改变源数据
 
 append()
 ignore_index
@@ -25,3 +20,14 @@ df1.merge(df1,df2,on=['name', 'age', 'sex'], how='outer')
 df1 = df1.append(df2)
 df1 = df1.append(df2)
 df1 = df1.drop_duplicates(subset=['name', 'age', 'sex'],keep=False)
+
+删除
+drop()
+columns：列名子集，去除这些列
+
+删除空值
+dropna()
+subset：列名子集，针对这些列
+
+填充空值
+fillna()
