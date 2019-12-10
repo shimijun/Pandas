@@ -1,0 +1,6 @@
+sort_values()
+by：列名子集
+acsending：升序或降序
+
+value_counts()
+统计出现次数
